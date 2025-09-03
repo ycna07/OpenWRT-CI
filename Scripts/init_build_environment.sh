@@ -135,7 +135,10 @@ function update_apt_source() {
 	mkdir -p "/etc/apt/sources.list.d"
 	mkdir -p "/etc/apt/trusted.gpg.d"
 
-	curl -fsSL https://deb.nodesource.com/setup_22.x | sudo bash -
+	cat <<-EOF >"/etc/apt/sources.list.d/nodesource.list"
+		deb https://deb.nodesource.com/node_${NODE_VERSION:-20}.x ${NODE_DISTRO:-nodistro} main
+	EOF
+	curl -fsL "https://deb.nodesource.com/gpgkey/${NODE_KEY:-nodesource-repo.gpg.key}" -o "/etc/apt/trusted.gpg.d/nodesource.asc"
 
 	cat <<-EOF >"/etc/apt/sources.list.d/yarn.list"
 		deb https://dl.yarnpkg.com/debian/ stable main
