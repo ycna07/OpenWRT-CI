@@ -87,7 +87,7 @@ if [ "$update_success" = true ]; then
     log "daed has reloaded"
   elif /etc/init.d/dae running; then
     log "dae is reloading"
-    /etc/init.d/dae hot_reload
+    /etc/init.d/dae restart
     log "dae has reloaded"
   fi
 fi
