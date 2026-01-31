@@ -80,7 +80,7 @@ endef
 define Build/Prepare
 	( \
 		rm -rf $(PKG_BUILD_DIR) && git clone $(PKG_SOURCE_URL) $(PKG_BUILD_DIR) && git -C $(PKG_BUILD_DIR) checkout $(GIT_BRANCH) ; \
-		rm -rf outbound && git clone $(OUTBOUND_URL) outbound && git -C outbound checkout $(GIT_BRANCH) ; \
+		rm -rf outbound && git clone $(OUTBOUND_URL) $(PKG_BUILD_DIR)/../outbound && git -C $(PKG_BUILD_DIR)/../outbound checkout $(GIT_BRANCH) ; \
 		pushd $(PKG_BUILD_DIR) ; \
 		git submodule update --init ; \
 		go mod tidy ; \
